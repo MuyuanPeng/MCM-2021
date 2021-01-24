@@ -1,5 +1,5 @@
 #for test
 
-print("pmy tcl!")
+print("pmy tql!")
 
-print("pmy tcl!")
+print("pmy tql!")
