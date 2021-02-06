@@ -1,3 +1,5 @@
 ﻿  16807.cc
-C:\Users\MI\source\repos\setfire\my_time.h(22,18): warning C4244: “=”: 从“time_t”转换到“long”，可能丢失数据
-  setfire.vcxproj -> C:\Users\MI\source\repos\setfire\Debug\setfire.exe
+C:\Users\MI\Documents\GitHub\MCM-2021\代码\setfire\my_time.h(22,18): warning C4244: “=”: 从“time_t”转换到“long”，可能丢失数据
+  main.cpp
+  正在生成代码...
+  setfire.vcxproj -> C:\Users\MI\Documents\GitHub\MCM-2021\代码\setfire\Debug\setfire.exe
