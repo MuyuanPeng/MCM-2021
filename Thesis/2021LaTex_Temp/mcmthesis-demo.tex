@@ -100,7 +100,8 @@ of automatic devices, like Unmanned Aerial Vehicle(UAV),
 radio and unmanned reconnaissance, should be taken into considerition. 
 \subsection{Restatement of the Problem}
 
-The unmanned devices to respond to the bushfires can be divided to two kinds,
+To help the firefighting system in East Victoria State, we are required
+to solve several problems. The unmanned devices to respond to the bushfires can be divided to two kinds,
 the SSA Thermal Imaging system and the Radio Repaeters, with each UAV carrying
 one of them. To gurantee that the Safty Cofficient meets the satandard, we should
 balance the number of SSA and RR carried by UAVs, in order to acquire best economic benifits.\\
@@ -108,13 +109,27 @@ Moreover, the prediction of the bushfires in the next decade in East Victotia is
 we will explain how to apply our model to respond to the bushfires.We are also required 
 to point out where the UAVs with Radio Repaeters should be.
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[scale=0.7]{figures/Vict_Map.png}
+  \caption{Topographical Map of Eastern Victoria}
+  \label{Topographical Map of Eastern Victoria}
+\end{figure}
+
 
 \section{Notations}
 \begin{itemize}
   \item \textbf{Unmanned Aerial Vehicle} $\rightarrow$ UAV
-  \item \textbf{Radio Repaeter} $\rightarrow$ RR
+  \item \textbf{Radio Repeater} $\rightarrow$ RR
   \item \textbf{Rapid Bushfire Response} $\rightarrow$ RBR
+  \item \textbf{Surveillance and Situational Awareness} $\rightarrow$ SSA
+  \item \textbf{The total number of SSA and RR}$\rightarrow$ m
+  \item \textbf{The firespot}$\rightarrow$ x
+  \item \textbf{The fireregion}$\rightarrow$ y
+  \item \textbf{Vector (x,y)}$\rightarrow$ $\alpha$ 
+  \item \textbf{Danger Cofficient}$\rightarrow$ d
 \end{itemize}
+\newpage
 
 
 \section{Hypothesis and Justifications}
@@ -127,16 +142,24 @@ to point out where the UAVs with Radio Repaeters should be.
 \end{enumerate}
 
 \section{Model Overview}
+\subsection{Optimal numbers Model}
+To design a purchasing configuration for SSA and RR, we need to introduce a \textbf{Danger Cofficient}
+to evaluate whether the number of devices can gurantee that the firefightres are safe enough to work at
+the firespots. Due to various kinds of goods in the problem, this is a threedimensional
+heterogeneous container loading problem. We use the Three Space Division
+Method and Monte Carlo Simulation to solve it.
+\subsection{Programming on Routes of UAVs}
 
 \section{Model Theory}
 
 \section{Model Implementation and Results}
 
-\section{Sensitivity Analysis}
+%\section{Sensitivity Analysis}
 
 \section{Disscussion}
 
 \section{Conclusion}
+\section{}
 
 
 
@@ -154,3 +177,4 @@ to point out where the UAVs with Radio Repaeters should be.
 %%                                   mcmthesis-demo.pdf.
 %%
 %% End of file `mcmthesis-demo.tex'.
+
