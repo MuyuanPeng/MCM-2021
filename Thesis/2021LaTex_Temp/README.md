@@ -5,9 +5,15 @@
 添加代码说明：图片直接发群里，我来加
 
 图片插入格式:
+
 \begin{figure}[htbp]
+
   \centering
+
   \includegraphics[scale=0.7]{figures/FILENAME}
+
   \caption{}
+  
   \label{}
+  
 \end{figure}
