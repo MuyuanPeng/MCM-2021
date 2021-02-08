@@ -40,18 +40,45 @@ double Exp_sample(double lambda);
 double random();
 int Discreate_sample(double weight[], int num);
 double Norm_sample(double x, double sigma);
+void init();
+
 
 int main()
 {
 	// 1.在半径为10km的范围内抽样，得到起火点
 	// 2.对于每个起火点，抽样得到起火大小
 	// 3.根据起火大小，抽样得到消防人员的位置
-	setfire_start(3,10);//para1:火区的lambda(不应该太大)；para2:火点的lambda(注：火点数目均值为para1*para2)
-	recalc();//根据现有的火点，重新计算火区的中心坐标和大小
-	setfire_firemen();
-	setfire_write_file();
-
+	for (int i = 0; i < 10000; ++i)
+	{
+		init();
+		setfire_start(3,10);//para1:火区的lambda(不应该太大)；para2:火点的lambda(注：火点数目均值为para1*para2)
+		recalc();//根据现有的火点，重新计算火区的中心坐标和大小
+		setfire_firemen();
+		setfire_write_file();
+		if (i % 1000 == 999)cout << i + 1 << endl;
+	}
 	return 0;
+}
+void init()
+{
+	for (int i = 0; i < FIRE; ++i)
+	{
+		fire_region[i].num_of_fireman = 0;
+		fire_region[i].rho = 0;
+		fire_region[i].size = 0;
+		fire_region[i].w = 0;
+		fire_region[i].x = 0;
+		fire_region[i].y = 0;
+
+		fire[i][0] = 0;
+		fire[i][1] = 0;
+		
+	}
+	for (int i = 0; i < PEOPLE; i++)
+	{
+		fireman[i][0] = 0;
+		fireman[i][1] = 0;
+	}
 }
 
 void setfire_start(double lambda_region, double lambda_size)
@@ -64,11 +91,11 @@ void setfire_start(double lambda_region, double lambda_size)
 		fire_region_num = Possion_sample(lambda_region);
 		if (fire_region_num >= FIRE)
 		{
-			printf("\n\n\n\t\t\tERROR!!!There are %d fire spots!\n\n\n", fire_region_num);
+			//printf("\n\n\n\t\t\tERROR!!!There are %d fire spots!\n\n\n", fire_region_num);
 			continue;
 		}
 		if (fire_region_num)break;
-		cout <<i<< "-th trial:"<<"Warning: fire_region_num=0, another initiation process will be done."<< endl;
+		//cout <<i<< "-th trial:"<<"Warning: fire_region_num=0, another initiation process will be done."<< endl;
 	} 
 
 	// 第二步:找出火区位置
@@ -122,7 +149,7 @@ void setfire_start(double lambda_region, double lambda_size)
 			double rho = Norm_sample(pow(fire_region[i].size,0.3),0.1);// 火点分布的半径取决于火点数目，数目越多，半径越大。
 			fire_region[i].rho = rho;
 			r = rho * sqrt(random());
-			if (r > rho) { cout << "ERROR!!!!!" << endl; getchar(); getchar(); }
+			//if (r > rho) { cout << "ERROR!!!!!" << endl; getchar(); getchar(); }
 			theta = 2 * PI * random();
 			// 抽样得到火区的x,y坐标
 			fire[fire_spot_count][0] = r * cos(theta) + fire_region[i].x;
@@ -155,7 +182,7 @@ void setfire_firemen()
 			fire_region[i].num_of_fireman++;
 		}
 	}
-	if (region_num > PEOPLE) { cout << "ERROR!!! region number is bigger than total people" << endl; }
+	//if (region_num > PEOPLE) { cout << "ERROR!!! region number is bigger than total people" << endl; }
 	for (int i = 0; i < PEOPLE - region_num; ++i)
 	{
 		int man_in_region = Discreate_sample(region_radii_weight,FIRE);
@@ -234,6 +261,8 @@ void setfire_write_file()
 	}
 	fclose(f_fire);
 	fclose(f_fireman);
+	fclose(f_region);
+	fclose(f_for_zw);
 }
 
 int Possion_sample(double lambda)
@@ -262,7 +291,7 @@ int JieCheng(int i)
 // 返回i的阶乘
 {
 	int result = 1;
-	if (i < 0) { printf("ERROR in JieCheng();(阶乘计算有误)！\n"); getchar(); return -1; }
+	//if (i < 0) { printf("ERROR in JieCheng();(阶乘计算有误)！\n"); getchar(); return -1; }
 	if (i == 0)return 1;
 	for (;; i--)
 	{
